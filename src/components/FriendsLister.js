@@ -24,6 +24,11 @@ const FriendsLister = () => {
         if (index !== -1){
             let tempList = list.slice();
             tempList[index][e.target.name] = e.target.value;
+            if(e.target.name === "date"){
+                tempList.sort(function(a,b){
+                   return new Date(b.date) - new Date(a.date);
+                });
+            }
             setList(tempList);
         }
     }
