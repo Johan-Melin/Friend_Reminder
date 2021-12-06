@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FriendRow = ({item, updateDate}) => {
+const FriendRow = ({item, updateDate, deleteBtn}) => {
     //.toISOString().substr(0, 10)
     return (
         <form>
@@ -14,6 +14,7 @@ const FriendRow = ({item, updateDate}) => {
                 <option value="other">Other</option>
             </select>
             <input type="date" id="contactDate" name="contactDate" defaultValue={item.date} onChange={val => updateDate(val)} />
+            <button onClick={e => deleteBtn(e, item.id)}>x</button>
         </form>
     )
 }

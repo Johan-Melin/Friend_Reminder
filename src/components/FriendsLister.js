@@ -23,11 +23,16 @@ const FriendsLister = () => {
         console.log(val)
     }
 
+    const deleteBtn = (e, val) => {
+        e.preventDefault();
+        setList(list.filter(item => item.id !== val));
+    }
+
     return (
         <>
             {list.length === 0 ? <h2>Add friends to start</h2> : null}
             {list.map((item, index) => {
-                return <FriendRow key={index} item={item} updateDate={updateDate} />
+                return <FriendRow key={index} item={item} updateDate={updateDate} deleteBtn={deleteBtn} />
             })}
             <button onClick={addFriend}>Add Friend</button>
         </>
