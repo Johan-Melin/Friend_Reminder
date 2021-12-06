@@ -28,9 +28,7 @@ const FriendsLister = () => {
         }
     }
 
-    const deleteBtn = (e, val) => {
-        e.preventDefault();
-        console.log(e.target.id)
+    const deleteBtn = (val) => {
         setList(list.filter(item => item.id !== val));
     }
 
@@ -38,7 +36,7 @@ const FriendsLister = () => {
         <>
             {list.length === 0 ? <h2>Add friends to start</h2> : null}
             {list.map((item, index) => {
-                return <FriendRow key={index} item={item} updateData={updateData} deleteBtn={deleteBtn} />
+                return <FriendRow key={item.id} item={item} updateData={updateData} deleteBtn={deleteBtn} />
             })}
             <button onClick={addFriend}>Add Friend</button>
         </>

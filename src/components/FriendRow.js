@@ -15,7 +15,7 @@ const FriendRow = ({item, updateData, deleteBtn}) => {
                 <option value="other">Other</option>
             </select>
             <input type="date" name="date" defaultValue={item.date} onChange={e => updateData(e, item.id)} />
-            <button type="button" name="delete" onClick={e => deleteBtn(e, item.id)}>x</button>
+            <button type="button" name="delete" onClick={() => deleteBtn(item.id)}>x</button>
         </form>
     )
 }
