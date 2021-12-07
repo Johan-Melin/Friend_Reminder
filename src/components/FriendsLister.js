@@ -1,6 +1,7 @@
 import React from 'react'
 import FriendRow from './FriendRow'
 import useLocalStorage from '../utils/useLocalStorage'
+import TimeHeader from './TimeHeader'
 
 const FriendsLister = () => {
     const [list, setList] = useLocalStorage('friendslist', []);
@@ -37,14 +38,21 @@ const FriendsLister = () => {
         setList(list.filter(item => item.id !== val));
     }
 
+    const [titles, setTitles] = React.useState([]);
+
     return (
-        <>
+        <div style={{margin: 10, display: "flex", width: "100%", flex: 1, flexDirection: "column", alignItems: 'center'}}>
             {list.length === 0 ? <h2>Add friends to start</h2> : null}
-            {list.map((item, index) => {
-                return <FriendRow key={item.id} item={item} updateData={updateData} deleteBtn={deleteBtn} />
+            {list.map(item => {
+                return (
+                    <div key={item.id}>
+                        <TimeHeader date={item.date} titles={titles} setTitles={setTitles} />
+                        <FriendRow item={item} updateData={updateData} deleteBtn={deleteBtn} />
+                     </div>
+                )
             })}
             <button onClick={addFriend}>Add Friend</button>
-        </>
+        </div>
     )
 }
 
