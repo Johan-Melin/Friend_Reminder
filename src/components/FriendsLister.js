@@ -54,10 +54,10 @@ const FriendsLister = () => {
     }
 
     return (
-        <div style={{margin: 10, display: "flex", width: "100%", flex: 1, flexDirection: "column", alignItems: 'center'}}>
+        <main style={{margin: 10, display: "flex", width: "100%", flex: 1, flexDirection: "column", alignItems: 'center'}}>
             {list.length === 0 ? <h2>Add friends to start</h2> : renderNames()}
             <button onClick={addFriend}>Add Friend</button>
-        </div>
+        </main>
     )
 }
 
