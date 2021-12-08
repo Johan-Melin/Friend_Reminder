@@ -5,7 +5,7 @@ const FriendRow = ({item, updateData, deleteBtn}) => {
     return (
         <form onSubmit={e => { e.preventDefault(); }}>
             <div style={{display: "flex", flex: 1, justifyContent: "end", alignItems: "end"}}>
-                <input type="text" name="name" placeholder="name" defaultValue={item.name} onChange={e => updateData(e, item.id)} />
+                <input type="text" name="name" placeholder="name" autoFocus="autoFocus" defaultValue={item.name} onChange={e => updateData(e, item.id)} />
                 <select name="type" defaultValue={item.type} onChange={e => updateData(e, item.id)}>
                     <option value="met">Met in person</option>
                     <option value="phone">Phone call</option>

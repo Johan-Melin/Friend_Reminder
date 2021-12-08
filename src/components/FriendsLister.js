@@ -39,23 +39,23 @@ const FriendsLister = () => {
         setList(list.filter(item => item.id !== val));
     }
 
-    const RenderNames = () => {
-        let dates = [];
-        let renderData = [];
+    const renderNames = () => {
+        const dates = [];
+        const renderData = [];
         list.forEach(item => {
             let header = calculateDays(item.date);
             if(dates.indexOf(header.text) === -1){
                 dates.push(header.text)
-                renderData.push(<TimeHeader timeRange={header} />)
+                renderData.push(<TimeHeader timeRange={header} key={uid()} />)
             }
-            renderData.push(<FriendRow item={item} updateData={updateData} deleteBtn={deleteBtn} />)
+            renderData.push(<FriendRow item={item} updateData={updateData} deleteBtn={deleteBtn} key={uid()} />)
         });
         return <ul>{renderData}</ul>;
     }
 
     return (
         <div style={{margin: 10, display: "flex", width: "100%", flex: 1, flexDirection: "column", alignItems: 'center'}}>
-            {list.length === 0 ? <h2>Add friends to start</h2> : <RenderNames />}
+            {list.length === 0 ? <h2>Add friends to start</h2> : renderNames()}
             <button onClick={addFriend}>Add Friend</button>
         </div>
     )
