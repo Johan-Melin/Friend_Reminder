@@ -1,6 +1,7 @@
 import React from 'react'
 import FriendRow from './FriendRow'
 import useLocalStorage from '../utils/useLocalStorage'
+import calculateDays from '../utils/calculateDays'
 import TimeHeader from './TimeHeader'
 
 const FriendsLister = () => {
@@ -38,19 +39,23 @@ const FriendsLister = () => {
         setList(list.filter(item => item.id !== val));
     }
 
-    const [titles, setTitles] = React.useState([]);
+    const RenderNames = () => {
+        let dates = [];
+        let renderData = [];
+        list.forEach(item => {
+            let header = calculateDays(item.date);
+            if(dates.indexOf(header.text) === -1){
+                dates.push(header.text)
+                renderData.push(<TimeHeader timeRange={header} />)
+            }
+            renderData.push(<FriendRow item={item} updateData={updateData} deleteBtn={deleteBtn} />)
+        });
+        return <ul>{renderData}</ul>;
+    }
 
     return (
         <div style={{margin: 10, display: "flex", width: "100%", flex: 1, flexDirection: "column", alignItems: 'center'}}>
-            {list.length === 0 ? <h2>Add friends to start</h2> : null}
-            {list.map(item => {
-                return (
-                    <div key={item.id}>
-                        <TimeHeader date={item.date} titles={titles} setTitles={setTitles} />
-                        <FriendRow item={item} updateData={updateData} deleteBtn={deleteBtn} />
-                     </div>
-                )
-            })}
+            {list.length === 0 ? <h2>Add friends to start</h2> : <RenderNames />}
             <button onClick={addFriend}>Add Friend</button>
         </div>
     )
