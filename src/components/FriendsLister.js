@@ -53,13 +53,21 @@ const FriendsLister = () => {
         return <ul>{renderData}</ul>;
     }
 
+    const containerStyle = {
+        margin: 10,
+        display: "flex",
+        width: "100%",
+        flex: 1, 
+        flexDirection: "column", 
+        alignItems: 'center'
+      };
+
     return (
-        <main style={{margin: 10, display: "flex", width: "100%", flex: 1, flexDirection: "column", alignItems: 'center'}}>
+        <main style={containerStyle}>
             {list.length === 0 ? <h2>Add friends to start</h2> : renderNames()}
             <button onClick={addFriend}>Add Friend</button>
         </main>
     )
 }
-
 
 export default FriendsLister

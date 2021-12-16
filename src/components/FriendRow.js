@@ -1,7 +1,6 @@
 import React from 'react'
 
 const FriendRow = ({item, updateData, deleteBtn}) => {
-    //.toISOString().substr(0, 10)
     return (
         <form onSubmit={e => { e.preventDefault(); }}>
             <div style={{display: "flex", flex: 1, justifyContent: "end", alignItems: "end"}}>
